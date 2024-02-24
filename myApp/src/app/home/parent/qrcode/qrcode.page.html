@@ -1,0 +1,23 @@
+<ion-header>
+  <div
+    style="color: white;display: flex;align-items: center;justify-content: space-between;flex-direction: row;background-color: rgb(84, 114, 148);height: 50px;padding: 10px;"
+    color="pat3">
+    <i (click)="location.back()" class="pi pi-arrow-left" style="font-size: 1rem"></i>
+    <div style="text-align: center;font-weight: 600;">QR CODE</div>
+    <div routerLink="/auth" class="pi pi-power-off" style="color: red;font-weight: 600;"></div>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">qrcode</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <div class="qrcodebody">
+    <div class="qrcode">
+      <qrcode [width]="300" [qrdata]="qrCodeValue"></qrcode>
+    </div>
+    <div class="comment">donnez ce code qr au responsable pour qu'il le scanne.</div>
+  </div>
+</ion-content>

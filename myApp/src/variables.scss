@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+$bg: #ffffff;
+$erster: #1e8ff8;
+$primary: #5aaefd;
+$secondary: #b4dcff;
+$check: #3acab7;
+$danger: #f22f1d;
+$warning: #ffb30d;
+$text-color: #333;
+
+$pat1: #769fcd;
+$pat2: #b9d7ea;
+$pat3: #d6e6f2;
+$pat4: #f7fbfc;
+
+// Typography
+$font-family: "Open Sans", sans-serif;
+$font-size-base: 16px;
+$line-height-base: 1.5;
+
+// Spacing
+$spacing-unit: 8px;
+$padding-base: $spacing-unit;
+$margin-base: $spacing-unit;
+
+// Borders
+$border-radius: 4px;
+$border-width: 1px;
+$border-color: #ccc;
+
+// Shadows
+$box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+  rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
