@@ -11,9 +11,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
-import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
-import { LogoutComponent } from 'src/app/components/logout/logout.component';
 import { RequestService } from 'src/app/service/request.service';
+import { Storage } from '@ionic/storage';
 
 @NgModule({
   imports: [
@@ -25,7 +24,7 @@ import { RequestService } from 'src/app/service/request.service';
     ToastModule,
     ButtonModule,
   ],
-  declarations: [ReceptorPage, LogoutComponent],
-  providers: [MessageService, RequestService],
+  declarations: [ReceptorPage],
+  providers: [MessageService, RequestService, Storage],
 })
 export class ReceptorPageModule {}

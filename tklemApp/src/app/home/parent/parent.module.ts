@@ -19,8 +19,8 @@ import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
-import { LogoutComponent } from 'src/app/components/logout/logout.component';
 import { RequestService } from 'src/app/service/request.service';
+import { Storage } from '@ionic/storage';
 
 @NgModule({
   imports: [
@@ -41,7 +41,7 @@ import { RequestService } from 'src/app/service/request.service';
     ProgressSpinnerModule,
     MessagesModule,
   ],
-  declarations: [ParentPage, LogoutComponent],
-  providers: [MessageService, RequestService],
+  declarations: [ParentPage],
+  providers: [MessageService, RequestService, Storage],
 })
 export class ParentPageModule {}

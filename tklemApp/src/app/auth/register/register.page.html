@@ -13,43 +13,71 @@
     <h1>S'inscrire</h1>
     <p-messages [(value)]="message" [enableService]="true" [closable]="true"></p-messages>
     <caption>Veuillez vous s'inscrire pour continuer.</caption>
-    <p-inputGroup>
-      <p-inputGroupAddon>
-        <i class="pi pi-user"></i>
-      </p-inputGroupAddon>
-      <input pInputText placeholder="Name" />
-    </p-inputGroup>
-    <p-inputGroup>
-      <p-inputGroupAddon>
-        <i class="pi pi-at"></i>
-      </p-inputGroupAddon>
-      <input pInputText type="email" placeholder="E-mail" />
-    </p-inputGroup>
-    <p-inputGroup>
-      <p-inputGroupAddon>
-        <i class="pi pi-lock"></i>
-      </p-inputGroupAddon>
-      <input pInputText type="password" placeholder="Mot de passe" />
-    </p-inputGroup>
-    <p-inputGroup>
-      <p-inputGroupAddon>
-        <i class="pi pi-lock"></i>
-      </p-inputGroupAddon>
-      <input pInputText type="password" placeholder="Mot de passe" />
-    </p-inputGroup>
-    <p-inputGroup>
-      <p-inputGroupAddon>
-        <i class="pi pi-id-card"></i>
-      </p-inputGroupAddon>
-      <input pInputText placeholder="CIN" />
-    </p-inputGroup>
-    <p-inputGroup>
-      <p-inputGroupAddon>
-        <i class="pi pi-hashtag"></i>
-      </p-inputGroupAddon>
-      <input pInputText placeholder="Massar code d'etudiant" />
-    </p-inputGroup>
-    <p-button (onClick)="requestSignup()" [rounded]="true" label="Inscrire"></p-button>
+    <form style="display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 8px;"
+      [formGroup]="registerForm" (ngSubmit)="registerRequest()">
+      <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="pi pi-user"></i>
+        </p-inputGroupAddon>
+        <input pInputText formControlName="name" placeholder="Name" />
+      </p-inputGroup>
+      <div
+        *ngIf="registerForm.controls['name'].invalid && (registerForm.controls['name'].dirty || registerForm.controls['name'].touched)"
+        class="error">
+        <div style="color:red" *ngIf="registerForm.controls['name'].errors.required">Name is required</div>
+      </div>
+
+      <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="pi pi-at"></i>
+        </p-inputGroupAddon>
+        <input pInputText formControlName="email" type="email" placeholder="E-mail" />
+      </p-inputGroup>
+      <div
+        *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)"
+        class="error">
+        <div style="color:red" *ngIf="registerForm.controls['email'].errors.required">Email is required</div>
+      </div>
+
+      <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="pi pi-lock"></i>
+        </p-inputGroupAddon>
+        <input pInputText formControlName="password" type="password" placeholder="Mot de passe" />
+      </p-inputGroup>
+      <div
+        *ngIf="registerForm.controls['password'].invalid && (registerForm.controls['password'].dirty || registerForm.controls['password'].touched)"
+        class="error">
+        <div style="color:red" *ngIf="registerForm.controls['password'].errors.required">Password is required</div>
+      </div>
+
+      <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="pi pi-id-card"></i>
+        </p-inputGroupAddon>
+        <input pInputText formControlName="cin" placeholder="CIN" />
+      </p-inputGroup>
+      <div
+        *ngIf="registerForm.controls['cin'].invalid && (registerForm.controls['cin'].dirty || registerForm.controls['cin'].touched)"
+        class="error">
+        <div style="color:red" *ngIf="registerForm.controls['cin'].errors.required">CIN is required</div>
+      </div>
+
+      <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="pi pi-hashtag"></i>
+        </p-inputGroupAddon>
+        <input pInputText formControlName="massarCode" placeholder="Massar code d'etudiant" />
+      </p-inputGroup>
+      <div
+        *ngIf="registerForm.controls['massarCode'].invalid && (registerForm.controls['massarCode'].dirty || registerForm.controls['massarCode'].touched)"
+        class="error">
+        <div style="color:red" *ngIf="registerForm.controls['massarCode'].errors.required">Massar code is required</div>
+      </div>
+
+      <p-button [disabled]="registerForm.invalid" (onClick)="registerRequest()" label="Register"></p-button>
+    </form>
+
     <a><span style="color: #ffffffb6;">Vous avez deja un compte ?</span>
     </a>
     <a routerLink="/auth/login" style="font-weight: 800; font-size:0.9rem; color: #3acab7; cursor: pointer;">

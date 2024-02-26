@@ -30,7 +30,9 @@ export class LoginPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  async ngOnInit(): Promise<void> {
+    await this.storage.remove('token');
+  }
 
   async loginRequest() {
     if (this.loginForm.valid) {
@@ -39,10 +41,10 @@ export class LoginPage implements OnInit {
       (
         await this.requestService.postRequestApi('api/auth/signup', formData)
       ).subscribe(
-        (data: any) => {
-          this.storage.remove('token');
-          this.storage.set('token', data.token);
-          this.router.navigate(['/home']);
+        async (data: any) => {
+          await this.storage.remove('token');
+          await this.storage.set('token', data.token);
+          await this.router.navigate(['/home']);
           this.isLoading = false;
         },
         (error: any) => {
@@ -50,8 +52,8 @@ export class LoginPage implements OnInit {
           this.messageService.add({
             severity: 'error',
             summary: 'Echec',
-            detail: "Une erreur s'est produite",
-            life: 6000,
+            detail: error.error.message,
+            life: 60000,
             closable: false,
           });
         }

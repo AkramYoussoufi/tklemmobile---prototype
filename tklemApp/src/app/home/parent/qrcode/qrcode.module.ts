@@ -8,8 +8,9 @@ import { QrcodePageRoutingModule } from './qrcode-routing.module';
 
 import { QrcodePage } from './qrcode.page';
 import { QRCodeModule } from 'angularx-qrcode';
-import { LogoutComponent } from 'src/app/components/logout/logout.component';
+import { Storage } from '@ionic/storage';
 import { RouterModule } from '@angular/router';
+import { RequestService } from 'src/app/service/request.service';
 
 @NgModule({
   imports: [
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     QRCodeModule,
     RouterModule,
   ],
-  declarations: [QrcodePage, LogoutComponent],
+  declarations: [QrcodePage],
+  providers: [Storage, RequestService],
 })
 export class QrcodePageModule {}

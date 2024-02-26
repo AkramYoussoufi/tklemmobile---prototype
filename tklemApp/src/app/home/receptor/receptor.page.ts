@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { BarcodeScanner } from '@capacitor-community/barcode-scanner';
 import { MessageService } from 'primeng/api';
 import { RequestService } from 'src/app/service/request.service';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-receptor',
@@ -12,10 +14,17 @@ export class ReceptorPage implements OnInit {
   isLoading: boolean = false;
   constructor(
     private messageService: MessageService,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private storage: Storage,
+    private router: Router
   ) {}
 
   ngOnInit() {}
+
+  async logout() {
+    await this.storage.remove('token');
+    this.router.navigate(['/auth']);
+  }
 
   async scanQRCode() {
     const options: any = {

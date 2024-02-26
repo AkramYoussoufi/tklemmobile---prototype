@@ -3,6 +3,8 @@ import { MessageService } from 'primeng/api';
 import { Student } from 'src/app/model/Student';
 import { Location } from '@angular/common';
 import { RequestService } from 'src/app/service/request.service';
+import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parent',
@@ -18,9 +20,12 @@ export class ParentPage implements OnInit {
   constructor(
     private messageService: MessageService,
     public location: Location,
-    private requestService: RequestService
+    private requestService: RequestService,
+    private storage: Storage,
+    private router: Router
   ) {}
   async ngOnInit(): Promise<void> {
+
     (
       await this.requestService.getRequestApi('api/student/mystudents')
     ).subscribe(
@@ -41,14 +46,13 @@ export class ParentPage implements OnInit {
   }
 
   async deleteStudent(massarCode: any, index: number) {
-    console.log(massarCode);
     (
       await this.requestService.postRequestApi('api/student/deletestfrpr', {
         massarCode: massarCode,
       })
     ).subscribe(
       (data) => {
-        this.entitys = this.entitys.splice(index, 1);
+        this.entitys = this.entitys.filter((_, i) => i !== index);
         this.messageService.add({
           severity: 'success',
           summary: 'Succès',
@@ -69,6 +73,10 @@ export class ParentPage implements OnInit {
         });
       }
     );
+  }
+  async logout() {
+    await this.storage.remove('token');
+    this.router.navigate(['/auth']);
   }
 
   showDialog() {
