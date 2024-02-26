@@ -1,0 +1,7 @@
+{
+  "name": "tklemApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

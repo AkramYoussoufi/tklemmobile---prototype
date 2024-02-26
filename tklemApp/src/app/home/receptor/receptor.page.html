@@ -1,0 +1,19 @@
+<p-toast></p-toast>
+<div *ngIf="isLoading"
+  style="position: absolute;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;background-color: rgba(0, 0, 0, 0.363);z-index: 100;">
+  <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+</div>
+<ion-header>
+  <div
+    style="color: white;display: flex;align-items: center;justify-content: space-between;flex-direction: row;background-color: rgb(84, 114, 148);height: 50px;padding: 10px;"
+    color="pat3">
+    <div style="text-align: center;font-weight: 600;">Lecture
+      QR</div>
+    <app-logout></app-logout>
+  </div>
+</ion-header>
+<div class="contentbody">
+  <div><i class="pi pi-qrcode" style="font-size: 20rem;color: rgba(0, 0, 0, 0.322);"></i></div>
+  <div class="comment">Scanne le Code QR du parent</div>
+  <div><p-button (onClick)="scanQRCode()" label="Scan QR" severity="primary"></p-button></div>
+</div>

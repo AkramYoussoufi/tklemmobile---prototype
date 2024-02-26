@@ -1,0 +1,39 @@
+<p-toast></p-toast>
+<div *ngIf="isLoading"
+  style="position: absolute;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;background-color: rgba(0, 0, 0, 0.363);z-index: 100;">
+  <p-progressSpinner ariaLabel="loading"></p-progressSpinner>
+</div>
+<ion-header>
+  <div
+    style="color: white;display: flex;align-items: center;justify-content: space-between;flex-direction: row;background-color: rgb(84, 114, 148);height: 50px;padding: 10px;"
+    color="pat3">
+    <div style="text-align: center;font-weight: 600;">Mes Enfants</div>
+    <app-logout></app-logout>
+  </div>
+</ion-header>
+<div class="contentbody">
+  <div class="studentList">
+    <div *ngFor="let student of entitys; let i = index" class="studentitem">
+      <p-avatar [label]="student.name[0]" styleClass="mr-2" size="large"
+        [style]="{ 'background-color': 'transparent', color: '#ffffff', border: 'solid 1px' }"
+        shape="circle"></p-avatar>
+      <div class="studentname" style="font-weight: 600;" [routerLink]="'qrcode'"
+        [queryParams]="{massarCode:student.massarCode}">{{ student.name }}</div>
+      <p-tag>{{ student.formationName }}</p-tag>
+      <i class="pi pi-trash" style="color: red; cursor: pointer;" (click)="deleteStudent(student.massarCode,i)"></i>
+    </div>
+  </div>
+  <div class="buttonadd"><p-button (click)="showDialog()" icon="pi pi-plus" [rounded]="true"
+      severity="success"></p-button></div>
+  <p-dialog header="Demande d'ajout d'un étudiant" [(visible)]="IsBoxActive" [breakpoints]="{ '960px': '75vw' }"
+    [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <p-inputGroup>
+      <p-inputGroupAddon>
+        <i class="pi pi-hashtag"></i>
+      </p-inputGroupAddon>
+      <input style="border: 1px solid #D1D5DB;" [(ngModel)]="massarCode" pInputText placeholder="Massar Code" />
+    </p-inputGroup>
+    <div style="padding-top: 10px;display: flex;align-items: center;justify-content: center;"><p-button
+        (onClick)="requestDemade()" label="Demande" [rounded]="true" severity="success"></p-button></div>
+  </p-dialog>
+</div>

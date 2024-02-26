@@ -1,0 +1,54 @@
+<div class="loginbody">
+  <div class="formentity">
+    <div *ngIf="isLoading"
+      style="position: absolute;width: 100%;height: 100%;display: flex;align-items: center;justify-content: center;background-color: rgba(0, 0, 0, 0.363);z-index: 100;">
+      <p-progressSpinner styleClass="w-4rem h-4rem" strokeWidth="8" fill="var(--surface-ground)"
+        animationDuration=".5s"></p-progressSpinner>
+    </div>
+    <div
+      style="display: flex;flex-direction: row;align-items: center;justify-content: center; gap: 10px;padding: 0px;height: 100px;">
+      <i class="pi pi-megaphone" style="font-size: 2.5rem;"></i>
+      <h5 style="font-size: 2.5rem;">TKLEM</h5>
+    </div>
+    <h1>Se Connecter</h1>
+    <p-messages [(value)]="message" [enableService]="true" [closable]="true"></p-messages>
+    <caption style="margin-top: 10%;">Veuillez vous connecter pour continuer.</caption>
+    <form style="display: flex;align-items: center;justify-content: center;flex-direction: column;gap: 8px;"
+      [formGroup]="loginForm" (ngSubmit)="loginRequest()">
+      <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="pi pi-user"></i>
+        </p-inputGroupAddon>
+        <input pInputText formControlName="email" placeholder="E-mail ou Pseudo" />
+      </p-inputGroup>
+      <div
+        *ngIf="loginForm.controls['email'].invalid && (loginForm.controls['email'].dirty || loginForm.controls['email'].touched)"
+        class="error">
+        <div style="color:red" *ngIf="loginForm.controls['email'].errors.required">Un E-mail ou un pseudo est requis
+        </div>
+      </div>
+      <p-inputGroup>
+        <p-inputGroupAddon>
+          <i class="pi pi-lock"></i>
+        </p-inputGroupAddon>
+        <input pInputText formControlName="password" type="password" placeholder="Mot de passe" />
+      </p-inputGroup>
+      <div
+        *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)"
+        class="error">
+        <div style="color:red" *ngIf="loginForm.controls['password'].errors.required">Mot de passe requis</div>
+      </div>
+      <p-button [disabled]="loginForm.invalid" (onClick)="loginRequest()" [rounded]="true" label="Connect"></p-button>
+    </form>
+    <a routerLink="/auth/forgotpw" style="font-weight: 800; font-size:0.9rem; color: #3acab7; cursor: pointer;">
+      Mot de passe oublié?
+    </a>
+    <a style="margin-top: 40%;">
+      <span style="color: #ffffffb6;">Vous n'avez pas de compte ?</span>
+    </a>
+    <a routerLink="/auth/register" style="font-weight: 800; font-size:0.9rem; color: #3acab7; cursor: pointer;">
+      S'inscrire
+    </a>
+  </div>
+
+</div>
