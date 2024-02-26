@@ -26,7 +26,7 @@ export class RequestService {
         'Bearer ' + (await this.storage.get('token'))
       );
     }
-    return this.httpClient.get(environment.URL_API + api, {
+    return this.httpClient.get('http://localhost:8080/' + api, {
       headers: headers,
     });
   }
@@ -39,7 +39,7 @@ export class RequestService {
         'Bearer ' + (await this.storage.get('token'))
       );
     }
-    return this.httpClient.post(environment.URL_API + api, body, {
+    return this.httpClient.post('http://localhost:8080/' + api, body, {
       headers: headers,
     });
   }
