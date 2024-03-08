@@ -31,12 +31,12 @@
         <p-inputGroupAddon>
           <i class="pi pi-at"></i>
         </p-inputGroupAddon>
-        <input pInputText formControlName="email" type="email" placeholder="E-mail" />
+        <input pInputText formControlName="email" type="text" placeholder="Username" />
       </p-inputGroup>
       <div
         *ngIf="registerForm.controls['email'].invalid && (registerForm.controls['email'].dirty || registerForm.controls['email'].touched)"
         class="error">
-        <div style="color:red" *ngIf="registerForm.controls['email'].errors.required">Email is required</div>
+        <div style="color:red" *ngIf="registerForm.controls['email'].errors.required">Username is required</div>
       </div>
 
       <p-inputGroup>
