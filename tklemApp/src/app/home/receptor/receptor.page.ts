@@ -40,6 +40,7 @@ export class ReceptorPage implements OnInit {
     const result = await BarcodeScanner.startScan(options);
 
     if (result.hasContent) {
+      console.log(result.content);
       (
         await this.requestService.postRequestApi('api/reciever/call', {
           massarCode: result.content,
